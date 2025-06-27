@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   # ================================
   # 🗂️ Next.js App
@@ -16,15 +18,16 @@ services:
     image: dperson/torproxy
     container_name: dataleak-tor
     restart: always
-    user: 101:101             # ✅ Force à tourner sous l'utilisateur tor
+    user: 101:101
     ports:
       - "9050:9050"
     volumes:
-      - ./tor/torrc:/etc/tor/torrc:ro
+      - ./tor/torrc:/config/torrc:ro         # ✅ Conf montée ailleurs
+      - ./tor/init.sh:/init.sh:ro             # ✅ Script init
       - tor-data:/var/lib/tor
+    entrypoint: ["/init.sh"]                  # ✅ On lance notre script
     depends_on:
       - app
 
 volumes:
-  # ================================
   tor-data:
