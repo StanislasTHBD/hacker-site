@@ -1,6 +1,6 @@
 services:
   app:
-    build: ./app
+    build: ./
     expose:
       - "3000"
     restart: always
