@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Wireshark",
+    "path": "/files/Wireshark.pdf",
+    "size": "1.2 MB",
+    "extension": "pdf",
+    "category": "Leaks"
+  },
+  {
+    "name": "Fiche mission",
+    "path": "/files/fiche_mission.docx",
+    "size": "850 KB",
+    "extension": "docx",
+    "category": "Tools"
+  },
+  {
+    "name": "Rapport sécurité",
+    "path": "/files/rapport_securite.zip",
+    "size": "2.1 MB",
+    "extension": "zip",
+    "category": "Credentials"
+  },
+  {
+    "name": "Rapport sécurité",
+    "path": "/files/rapport_securite.zip",
+    "size": "2.1 MB",
+    "extension": "zip",
+    "category": "Archives"
+  }
+]
