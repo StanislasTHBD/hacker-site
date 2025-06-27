@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:start": "next start -H 0.0.0.0"
   },
   "dependencies": {
     "chart.js": "^4.5.0",
