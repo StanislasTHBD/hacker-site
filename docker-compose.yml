@@ -9,7 +9,7 @@ services:
     image: dperson/torproxy
     restart: always
     ports:
-      - "9050:9050"  # Port SOCKS (optionnel)
+      - "9050:9050"
     volumes:
       - ./tor/torrc:/etc/tor/torrc
       - tor-data:/var/lib/tor
