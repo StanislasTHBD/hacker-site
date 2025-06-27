@@ -1,0 +1,20 @@
+services:
+  app:
+    build: ./app
+    expose:
+      - "3000"
+    restart: always
+
+  tor:
+    image: dperson/torproxy
+    restart: always
+    ports:
+      - "9050:9050"  # Port SOCKS (optionnel)
+    volumes:
+      - ./tor/torrc:/etc/tor/torrc
+      - tor-data:/var/lib/tor
+    depends_on:
+      - app
+
+volumes:
+  tor-data:
