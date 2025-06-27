@@ -1,31 +1,30 @@
 services:
-  # ======================================
-  # 🗂️ 1️⃣ Ton site Next.js
+  # ================================
+  # 🗂️ Next.js App
   app:
     build: ./
     container_name: dataleak-app
     expose:
-      - "3000"          # port interne
+      - "3000"
     ports:
-      - "3000:3000"     # port externe → http://localhost:3000
+      - "3000:3000"
     restart: always
-    # ✅ Pas de depends_on — car c’est Tor qui attend App, pas l’inverse.
 
-  # ======================================
-  # 🧅 2️⃣ Ton service Tor proxy
+  # ================================
+  # 🧅 Tor Proxy
   tor:
     image: dperson/torproxy
     container_name: dataleak-tor
     restart: always
+    user: 101:101             # ✅ Force à tourner sous l'utilisateur tor
     ports:
-      - "9050:9050"   # port SOCKS (Tor)
+      - "9050:9050"
     volumes:
-      - ./tor/torrc:/etc/tor/torrc:ro   # Fichier config Tor côté hôte
-      - tor-data:/var/lib/tor           # Persistance clé Tor
+      - ./tor/torrc:/etc/tor/torrc:ro
+      - tor-data:/var/lib/tor
     depends_on:
-      - app  # ✅ Tor dépend de App — logique : Tor publie App
+      - app
 
 volumes:
-  # ======================================
-  # 📦 Volume persistant pour Tor
+  # ================================
   tor-data:

@@ -1,4 +1,3 @@
-# tor/torrc
 SocksPort 9050
 HiddenServiceDir /var/lib/tor/hidden_service/
 HiddenServicePort 80 dataleak-app:3000
