@@ -9,6 +9,8 @@ services:
     ports:
       - "3000:3000"
     restart: always
+    volumes:
+      - ./data:/app/data    # ✅ Volume pour les JSON dynamiques
 
   # ================================
   # 🧅 Tor Proxy
@@ -18,14 +20,14 @@ services:
     restart: always
     user: 101:101
     ports:
-      - "9051:9050"
+      - "9051:9050"  # Port hôte 9051 -> interne 9050 pour éviter conflit local
     volumes:
-      - ./tor/torrc:/config/torrc:ro         # ✅ Conf montée ailleurs
-      - ./tor/init.sh:/init.sh:ro             # ✅ Script init
-      - tor-data:/var/lib/tor
-    entrypoint: ["/init.sh"]                  # ✅ On lance notre script
+      - ./tor/torrc:/config/torrc:ro   # Conf Tor custom
+      - ./tor/init.sh:/init.sh:ro      # Script init Tor
+      - tor-data:/var/lib/tor          # Clés Hidden Service persistantes
+    entrypoint: ["/init.sh"]           # On lance le script perso
     depends_on:
-      - app
+      - app                            # Tor dépend de ton app
 
 volumes:
   tor-data:
